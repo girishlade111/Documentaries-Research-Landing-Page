@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas - Documentaries & Deep Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        // Set theme on page load to prevent FOUC (Flash of Unstyled Content)
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section-docs {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://placehold.co/1920x1080/0f172a/ffffff?text=Cinematic+Still');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            border-left: 4px solid #ca8a04; /* Yellow-600 */
+            padding-left: 1rem;
+        }
+        .focus-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .focus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .focus-card:hover {
+             box-shadow: 0 20px 25px -5px rgba(202, 138, 4, 0.2), 0 10px 10px -5px rgba(202, 138, 4, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-slate-800 sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-slate-900 dark:text-white">
+                <i class="fas fa-video text-yellow-600"></i> Veritas
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#documentaries" class="text-slate-600 dark:text-slate-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition duration-300">Documentaries</a>
+                <a href="#research" class="text-slate-600 dark:text-slate-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition duration-300">Research</a>
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition duration-300">About</a>
+            </div>
+            <div class="flex items-center gap-4">
+                 <a href="#cta" class="hidden md:inline-block bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300 transform hover:scale-105">
+                    Become a Member
+                </a>
+                <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-700 rounded-lg text-sm p-2.5">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-slate-800 dark:text-slate-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white dark:bg-slate-800">
+            <a href="#documentaries" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-yellow-600">Documentaries</a>
+            <a href="#research" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-yellow-600">Research</a>
+            <a href="#about" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-yellow-600">About</a>
+            <a href="#cta" class="block mt-4 bg-yellow-600 text-white text-center font-semibold px-6 py-2 rounded-lg hover:bg-yellow-700">Become a Member</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section-docs text-white py-20 md:py-40">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Stories That Matter, Research That Drives</h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+                    Experience award-winning documentaries and access peer-reviewed research that uncovers the truth.
+                </p>
+                <a href="#about" class="bg-white text-yellow-700 font-bold px-8 py-4 rounded-full text-lg hover:bg-slate-200 transition duration-300 transform hover:scale-105">
+                    Discover Our Work
+                </a>
+            </div>
+        </section>
+
+        <!-- Our Focus Section -->
+        <section id="about" class="py-20 bg-white dark:bg-slate-950">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title inline-block dark:text-white">Our Dual Mission</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">We are committed to both the art of storytelling and the rigor of academic inquiry.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Documentary Card -->
+                    <div id="documentaries" class="focus-card text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <div class="text-yellow-600 mb-4 text-6xl"><i class="fas fa-film"></i></div>
+                        <h3 class="text-2xl font-bold mb-3 dark:text-white">Cinematic Documentaries</h3>
+                        <p class="text-slate-600 dark:text-slate-400">We produce feature-length and short documentaries that explore critical social, scientific, and historical issues with compelling narratives and stunning visuals.</p>
+                    </div>
+                    <!-- Research Card -->
+                    <div id="research" class="focus-card text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <div class="text-yellow-600 mb-4 text-6xl"><i class="fas fa-book"></i></div>
+                        <h3 class="text-2xl font-bold mb-3 dark:text-white">In-Depth Research</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Our research division publishes original, peer-reviewed studies and white papers, contributing valuable data and analysis to the academic community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Content Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title inline-block dark:text-white">Featured Work</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">A look at our latest and most impactful projects.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Featured Documentary -->
+                    <div class="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/800x450/ca8a04/ffffff?text=Ocean's+Whisper" alt="Documentary Poster" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <span class="text-sm text-yellow-600 dark:text-yellow-400 font-semibold">FEATURED DOCUMENTARY</span>
+                            <h3 class="text-2xl font-bold my-2 dark:text-white">Ocean's Whisper</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">An immersive journey into the world's deep oceans, revealing the fragile ecosystems and the urgent need for conservation.</p>
+                            <a href="#" class="text-yellow-600 dark:text-yellow-400 font-semibold hover:underline">Watch Trailer &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Featured Research -->
+                    <div class="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/800x450/1e293b/ffffff?text=Climate+Data+Model" alt="Research Graph" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <span class="text-sm text-yellow-600 dark:text-yellow-400 font-semibold">FEATURED RESEARCH</span>
+                            <h3 class="text-2xl font-bold my-2 dark:text-white">Climate Change: A Predictive Model</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">This paper presents a new predictive model for global temperature rise, based on an analysis of 50 years of atmospheric data.</p>
+                            <a href="#" class="text-yellow-600 dark:text-yellow-400 font-semibold hover:underline">Read Abstract &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Behind the Scenes Section -->
+        <section class="py-20 bg-white dark:bg-slate-950">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title inline-block dark:text-white">Behind The Scenes</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">Our commitment to quality is unwavering, from initial concept to final publication.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="p-4">
+                        <i class="fas fa-search-location text-5xl text-yellow-600 mb-3"></i>
+                        <h4 class="font-bold text-lg dark:text-white">Field Research</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Months of on-the-ground investigation.</p>
+                    </div>
+                     <div class="p-4">
+                        <i class="fas fa-camera-retro text-5xl text-yellow-600 mb-3"></i>
+                        <h4 class="font-bold text-lg dark:text-white">Expert Cinematography</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">State-of-the-art equipment and experienced crews.</p>
+                    </div>
+                     <div class="p-4">
+                        <i class="fas fa-check-double text-5xl text-yellow-600 mb-3"></i>
+                        <h4 class="font-bold text-lg dark:text-white">Peer Review</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">All research is validated by leading experts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="bg-yellow-600 dark:bg-yellow-700 text-white">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h2 class="text-3xl font-bold mb-4">Become a Veritas Member</h2>
+                <p class="max-w-2xl mx-auto mb-8">Gain exclusive access to our full library of films, research papers, and behind-the-scenes content. Support our mission to bring truth to light.</p>
+                <form class="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-yellow-300" required>
+                    <button type="submit" class="bg-slate-900 text-white font-bold px-8 py-3 rounded-lg hover:bg-black transition duration-300 shrink-0">Join Now</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 dark:bg-black text-slate-400">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">Veritas</h3>
+                    <p class="text-sm">Truth in Sight and Scholarship.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Explore</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white dark:hover:text-yellow-400">Our Story</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white dark:hover:text-yellow-400">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white dark:hover:text-yellow-400">Submissions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white dark:hover:text-yellow-400">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white dark:hover:text-yellow-400">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white text-xl"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 mt-8 pt-6 text-center text-sm">
+                <p>&copy; <span id="year"></span> Veritas. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        
+        // Set initial icon state
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleButton.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // Toggle theme class
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
